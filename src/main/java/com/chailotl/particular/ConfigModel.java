@@ -1,6 +1,7 @@
 package com.chailotl.particular;
 
-import com.chailotl.sushi_bar.owo.config.SushiModmenu;
+
+import com.chailotl.particular.sushi_bar.owo.config.SushiModmenu;
 import io.wispforest.owo.config.annotation.*;
 import io.wispforest.owo.ui.core.Color;
 import net.minecraft.util.Identifier;
@@ -86,9 +87,9 @@ public class ConfigModel
 		@PredicateConstraint("minOne")
 		public int accelChangeChance = 180;
 		public List<Identifier> excludeBiomes = Arrays.asList(
-			new Identifier("minecraft:lush_caves"),
-			new Identifier("minecraft:dripstone_caves"),
-			new Identifier("minecraft:deep_dark")
+			Identifier.of("minecraft:lush_caves"),
+			Identifier.of("minecraft:dripstone_caves"),
+			Identifier.of("minecraft:deep_dark")
 		);
 
 		public static boolean minOne(int num)

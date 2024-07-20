@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.chailotl.particular.sushi_bar.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "lavender.InjectBook",
+    "lavender.InjectBookLoader",
+    "owo.config.InjectConfigWrapper"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "lavender.InjectLavenderBookScreen"
+  ]
+}

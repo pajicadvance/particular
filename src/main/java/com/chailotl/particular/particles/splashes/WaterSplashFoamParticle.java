@@ -6,7 +6,8 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
+import org.jetbrains.annotations.Nullable;
 
 public class WaterSplashFoamParticle extends WaterSplashParticle
 {
@@ -17,7 +18,7 @@ public class WaterSplashFoamParticle extends WaterSplashParticle
 	}
 
 	@Environment(EnvType.CLIENT)
-	public static class Factory implements ParticleFactory<DefaultParticleType>
+	public static class Factory implements ParticleFactory<SimpleParticleType>
 	{
 		private final SpriteProvider provider;
 
@@ -26,7 +27,9 @@ public class WaterSplashFoamParticle extends WaterSplashParticle
 			this.provider = provider;
 		}
 
-		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double g, double h, double i)
+		@Nullable
+		@Override
+		public Particle createParticle(SimpleParticleType SimpleParticleType, ClientWorld clientWorld, double x, double y, double z, double g, double h, double i)
 		{
 			return new WaterSplashFoamParticle(clientWorld, x, y, z, (float) g, (float) h, provider);
 		}
