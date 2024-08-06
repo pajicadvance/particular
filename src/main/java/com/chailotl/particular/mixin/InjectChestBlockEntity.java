@@ -72,8 +72,7 @@ public abstract class InjectChestBlockEntity extends LootableContainerBlockEntit
 
 		if (!state.get(Properties.WATERLOGGED) ||
 			state.get(Properties.CHEST_TYPE) == ChestType.LEFT ||
-			!getSoulSand(world, pos, state) ||
-			ChestBlock.getInventory((ChestBlock) Blocks.CHEST, state, world, pos, false) == null)
+			!getSoulSand(world, pos, state))
 		{
 			return;
 		}
