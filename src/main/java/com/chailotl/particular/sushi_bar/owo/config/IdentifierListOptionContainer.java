@@ -1,6 +1,5 @@
 package com.chailotl.particular.sushi_bar.owo.config;
 
-import com.chailotl.particular.sushi_bar.Main;
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.config.ui.component.ConfigTextBox;
 import io.wispforest.owo.config.ui.component.ListOptionContainer;
@@ -14,7 +13,6 @@ import io.wispforest.owo.ui.core.Sizing;
 import io.wispforest.owo.ui.core.VerticalAlignment;
 import io.wispforest.owo.ui.util.UISounds;
 import io.wispforest.owo.util.ReflectionUtils;
-import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -58,32 +56,7 @@ public class IdentifierListOptionContainer extends ListOptionContainer
 
 			final var box = new ConfigTextBox();
 			box.setText(backingList.get(i).toString());
-			try
-			{
-				// I hate that I need to do this but thanks Mojank
-				Class<?> clazz = TextFieldWidget.class;
-
-				String setCursorToStart = Main.RESOLVER.mapMethodName(
-					"intermediary",
-					Main.RESOLVER.unmapClassName("intermediary", clazz.getName()),
-					"method_1870",
-					Main.preVersion ? "()V" : "(Z)V");
-
-				if (Main.preVersion)
-				{
-					//box.setCursorToStart();
-					clazz.getMethod(setCursorToStart).invoke(box);
-				}
-				else
-				{
-					//box.setCursorToStart(false);
-					clazz.getMethod(setCursorToStart, boolean.class).invoke(box, false);
-				}
-			}
-			catch (Exception e)
-			{
-				Main.LOGGER.error(e.toString());
-			}
+			box.setCursorToStart(false);
 			box.setDrawsBackground(false);
 			box.margins(Insets.vertical(2));
 			box.horizontalSizing(Sizing.fill(95));

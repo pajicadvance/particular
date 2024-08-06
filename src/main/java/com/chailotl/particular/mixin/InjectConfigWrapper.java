@@ -1,4 +1,4 @@
-package com.chailotl.particular.sushi_bar.mixin.owo.config;
+package com.chailotl.particular.mixin;
 
 import blue.endless.jankson.Jankson;
 import com.chailotl.particular.sushi_bar.owo.config.SushiConfigScreen;

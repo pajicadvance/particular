@@ -25,14 +25,10 @@
 	"entrypoints": {
 		"client": [
 			"com.chailotl.particular.Main"
-		],
-		"main": [
-			"com.chailotl.particular.sushi_bar.Main"
 		]
 	},
 	"mixins": [
-		"particular.mixins.json",
-		"sushi_bar.mixins.json"
+		"particular.mixins.json"
 	],
 	"accessWidener": "particular.accesswidener",
 	"depends": {
