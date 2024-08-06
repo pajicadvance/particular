@@ -186,7 +186,7 @@ public class LeafParticle extends SpriteBillboardParticle
 		}
 		else if (age > maxAge - fadeOutDuration)
 		{
-			++ageDelta;
+			//++ageDelta;
 			alpha = (maxAge - ageDelta) / (float)fadeOutDuration;
 		}
 		else
