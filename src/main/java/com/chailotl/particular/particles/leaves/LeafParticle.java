@@ -145,7 +145,7 @@ public class LeafParticle extends SpriteBillboardParticle
 
 		if (!expiring || !Main.CONFIG.fallingLeavesSettings.layFlatOnGround())
 		{
-			vector3fs = new Vector3f[]{new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F)};
+			vector3fs = new Vector3f[]{new Vector3f(1.0F, -1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(-1.0F, -1.0F, 0.0F)};
 
 			Quaternionf quaternionf;
 			if (angle == 0.0F)
