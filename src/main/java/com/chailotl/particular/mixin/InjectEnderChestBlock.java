@@ -21,7 +21,7 @@ public class InjectEnderChestBlock
 	@Inject(
 		method = "onUse",
 		at = @At("HEAD"))
-	private void releaseBubbles(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir)
+	private void releaseBubbles(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir)
 	{
 		if (!Main.CONFIG.chestBubbles()) { return; }
 

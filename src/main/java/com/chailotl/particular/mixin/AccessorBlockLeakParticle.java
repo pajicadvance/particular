@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(BlockLeakParticle.class)
 public interface AccessorBlockLeakParticle
 {
-	@Accessor("fluid")
+	@Accessor
 	Fluid getFluid();
 }

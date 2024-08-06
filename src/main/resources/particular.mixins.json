@@ -1,35 +1,37 @@
 {
-	"required": true,
-	"package": "com.chailotl.particular.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"client": [
-		"AccessorBiome",
-		"AccessorBillboardParticle",
-		"AccessorBlockLeakParticle",
-		"AccessorChestBlockEntity",
-		"AccessorEnderChestBlockEntity",
-		"AccessorParticle",
-		"InjectBarrelBlock",
-		"InjectBlockLeakParticle",
-		"InjectBubbleColumnUpParticle",
-		"InjectCakeBlock",
-		"InjectChestBlock",
-		"InjectChestBlockEntity",
-		"InjectContinuousFalling",
-		"InjectEnderChestBlock",
-		"InjectEnderChestBlockEntity",
-		"InjectEntity",
-		"InjectFlowableFluid",
-		"InjectBlock",
-		"InjectLeavesBlock",
-		"InjectWaterBubbleParticle",
-		"InjectWaterFluid",
-		"InvokerLivingEntity",
-		"InjectWorldRenderer"
-	]
+  "required": true,
+  "package": "com.chailotl.particular.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "InvokerViewerCountManager"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "AccessorBillboardParticle",
+    "AccessorBiome",
+    "AccessorBlockLeakParticle",
+    "AccessorChestBlockEntity",
+    "AccessorEnderChestBlockEntity",
+    "AccessorParticle",
+    "InjectBarrelBlock",
+    "InjectBlock",
+    "InjectBlockLeakParticle",
+    "InjectBubbleColumnUpParticle",
+    "InjectCakeBlock",
+    "InjectChestBlock",
+    "InjectChestBlockEntity",
+    "InjectContinuousFalling",
+    "InjectEnderChestBlock",
+    "InjectEnderChestBlockEntity",
+    "InjectEntity",
+    "InjectFlowableFluid",
+    "InjectLeavesBlock",
+    "InjectWaterBubbleParticle",
+    "InjectWaterFluid",
+    "InjectWorldRenderer",
+    "InvokerLivingEntity",
+    "InjectConfigWrapper"
+  ]
 }

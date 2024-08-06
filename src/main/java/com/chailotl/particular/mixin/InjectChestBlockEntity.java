@@ -4,9 +4,7 @@ import com.chailotl.particular.Main;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.*;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -15,14 +13,18 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChestBlockEntity.class)
-public class InjectChestBlockEntity extends BlockEntity
+public abstract class InjectChestBlockEntity extends LootableContainerBlockEntity implements LidOpenable
 {
 	@Unique
 	private int ticksUntilNextSwitch = 20;
@@ -70,25 +72,27 @@ public class InjectChestBlockEntity extends BlockEntity
 
 		if (!state.get(Properties.WATERLOGGED) ||
 			state.get(Properties.CHEST_TYPE) == ChestType.LEFT ||
-			!getSoulSand(world, pos, state) ||
-			ChestBlock.getInventory((ChestBlock) Blocks.CHEST, state, world, pos, false) == null)
+			!getSoulSand(world, pos, state))
 		{
 			return;
 		}
 
 		if (--blockEntity.ticksUntilNextSwitch <= 0)
 		{
+			ViewerCountManager manager = ((AccessorChestBlockEntity) blockEntity).getStateManager();
 			if (blockEntity.isOpen)
 			{
 				blockEntity.isOpen = false;
 				blockEntity.ticksUntilNextSwitch = world.random.nextBetween(minClosedTime, maxClosedTime);
-				((AccessorChestBlockEntity) blockEntity).getStateManager().closeContainer(null, world, pos, blockEntity.getCachedState());
+				((AccessorChestBlockEntity) blockEntity).getLidAnimator().setOpen(false);
+				((InvokerViewerCountManager)manager).invokeOnContainerClose(world, pos, blockEntity.getCachedState());
 			}
 			else
 			{
 				blockEntity.isOpen = true;
 				blockEntity.ticksUntilNextSwitch = world.random.nextBetween(minOpenTime, maxOpenTime);
-				((AccessorChestBlockEntity) blockEntity).getStateManager().openContainer(null, world, pos, blockEntity.getCachedState());
+				((AccessorChestBlockEntity) blockEntity).getLidAnimator().setOpen(true);
+				((InvokerViewerCountManager)manager).invokeOnContainerOpen(world, pos, blockEntity.getCachedState());
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundCategory.AMBIENT, 1f, 1f, true);
 			}
 		}

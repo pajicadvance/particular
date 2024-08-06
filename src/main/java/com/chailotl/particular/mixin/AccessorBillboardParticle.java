@@ -7,6 +7,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(BillboardParticle.class)
 public interface AccessorBillboardParticle
 {
-	@Accessor("scale")
+	@Accessor
 	void setScale(float scale);
 }
